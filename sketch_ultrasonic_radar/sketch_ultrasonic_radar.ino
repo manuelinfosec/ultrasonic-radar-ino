@@ -8,13 +8,13 @@ const int ECHO_PIN = 9;
 // --- Constants for Servo ---
 const int MIN_ANGLE = 0;
 const int MAX_ANGLE = 180;
-const int ANGLE_STEP = 1;
-const int SWEEP_DELAY= 15;  /// Delay between servo movements in milliseconds
+const int ANGLE_STEP = 30;
+const int SWEEP_DELAY = 15;  /// Delay between servo movements in milliseconds
 
 // --- Constants for Ultrasonic Sensor ---
 // The speed of sound is 343 m/s or 29.1 microseconds per centimeter.
 // The pulseIn() function measures the round trip time
-// So, the distance in cm is (duration / 2) / 29.1 OR duration / 58.2
+// So, the distance in cm is (duration / 2) / 29.1 OR duratioN / 58.2
 const float SOUND_SPEED_FACTOR = 58.2;
 
 
@@ -26,14 +26,14 @@ void setup() {
   myServo.attach(SERVO_PIN);
 
   // default to 90 degrees to manually balance sensor
-  // myServo.write(180);
+  myServo.write(0);
   Serial.begin(9600);
 }
 
 void loop() {
   // Sweep from MIN_ANGLE to MAX_ANGLE
   sweepAndMeasure(MIN_ANGLE, MAX_ANGLE, ANGLE_STEP);
-  
+
 
   // Sweep back from MAX_ANGLE to MIN_ANGLE
   sweepAndMeasure(MAX_ANGLE, MIN_ANGLE, -ANGLE_STEP);
